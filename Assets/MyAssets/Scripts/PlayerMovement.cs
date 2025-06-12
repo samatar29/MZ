@@ -12,6 +12,9 @@ public class PlayerMovement : MonoBehaviour
     float SpeedX;
     float SpeedY;
     Rigidbody2D rb;
+
+    public GameObject panel;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -40,6 +43,21 @@ public class PlayerMovement : MonoBehaviour
         {
             fogofWar.MakeHole(transform.position, sightDistance);
             yield return new WaitForSeconds(checkInterval);
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        // Check if the collision is with the next level square
+        if (collision.gameObject.CompareTag("NextLevel"))
+        {
+            // Show the panel
+            panel.SetActive(true);
+        }
+        if (collision.gameObject.CompareTag("NextLevel"))
+        {
+            // Show the panel
+            panel.SetActive(true);
         }
     }
 }
